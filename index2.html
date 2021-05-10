@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tweet Memo</title>
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <!-- <h1>Memo Pad 0.1</h1> -->
+    <h1>Tweet Memo</h1>
+  </header>
+
+  <main class="main">
+    <div id="controller" class="buttons">
+      <a type="button" id="add-button" value="New" class="btn-animation-02">
+        <span>New<span></a>
+      <a type="button" class="btn-animation-02" id="All-save-button"><span>Save</span></a>
+      <a type="button" class="btn-animation-02" id="Text-clear"><span>Text Clear</span></a>
+      <a type="button" class="btn-animation-02" id="Tweet"><span>Tweet</span></a>
+      <a type="button" class="btn-animation-02" id="Data-clear"><span>Data Clear</span></a>
+      <a type="button" class="btn-animation-02" id="All-load"><span>Load</span></a>
+      <a type="button" class="btn-animation-02" id="All-delete-button"><span>All Delete</span></a>
+      <!-- <input type="button" id="add-button" value="New" class="btn-animation-02"> -->
+    </div>
+    <div id="sticky-note-container" class="container">
+
+    </div>
+    <div class="fluid"></div>
+    <div class="fluid2"></div>
+    <div class="fluid3"></div>
+    <div class="fluid4"></div>
+    <div class="fluid5"></div>
+
+
+  </main>
+
+
+
+
+  <footer class="copyrights">
+    <small>G's Company</small>
+  </footer>
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <script src="external/jquery/jquery.js"></script>
+  <!-- <script src="jquery-ui.min.js"></script> -->
+  <script src="jquery-ui.js"></script>
+  <script>
+    function getNewNote() {
+      return '<div class="note1">' +
+        '<textarea class="expanding" class="text_area"></textarea>' +
+        '<input class="save-button" type="button" value=" S ">' +
+        '<input class="delete-button" type="button" value=" × ">' +
+        '<input data-color="rgba(125, 221, 16, 0.466)" class="color-button" type="button" value=" Y ">' +
+        '<input data-color="rgba(229, 233, 245, 0.25)" class="color-button" type="button" value=" W ">' +
+        '</div>';
+    }
+
+    //入れ子状レイアウトチャレンジしたがJSがうまく挙動しないため中断！！泣
+    // function getNewNote() {
+    //     return '<div class="note1">' +
+    //       '<div class="note_text">' +
+    //       '<input type="text">' +
+    //       '</div>' +
+    //       '<div class="note_buttons">' +
+    //       '<input class="delete-button" type="button" value=" × ">' +
+    //       '<input data-color="rgba(206, 25, 1, 0.5)" class="color-button" type="button" value=" p ">' +
+    //       '<input data-color="rgba(229, 233, 245, 0.25)" class="color-button" type="button" value=" w ">' +
+    //       '</div>' +
+    //       '</div>';
+    //   }
+
+    function appendFunctions($note) {
+      $note.resizable();
+      $note.draggable();
+
+      // autosize($note.find('.expanding'));
+
+      $note.children(".delete-button")
+        .on('click', function () {
+          $(this).parents('.note1').remove();
+        });
+
+      $note.children(".color-button")
+        .on('click', function () {
+          const color = $(this).data('color');
+          $(this).parents('.note1').css('background-color', color);
+        });
+    }
+
+    $('#add-button').on('click', function () {
+      var $note = $(getNewNote());
+      appendFunctions($note);
+
+      $('#sticky-note-container').append($note);
+    });
+
+    $('#All-delete-button').on('click', function () {
+      $(".note1").remove();
+    });
+
+
+    //1.Save クリックイベント
+    // $('.save-button').on('click', function () {
+    //   const text = $('.note1').val();
+    //   console.log(text);
+    //   localStorage.setItem('memo', text);
+    // });
+
+    $('#All-save-button').on('click', function () {
+      const text = $('.expanding').val();
+      // const text = $('.text_area').val(); だと何故か反応しなかったぞ！？
+      console.log(text);
+      localStorage.setItem('memo', text);
+    });
+
+
+    //2.text clear クリックイベント
+    $('#Text-clear').on('click', function () {
+      $('.expanding').val('');
+    });
+
+    //2.data clear クリックイベント
+    $('#Data-clear').on('click', function () {
+      localStorage.removeItem('memo');
+    });
+
+    //  ↓うまく挙動していないです
+    // $('#All-load').on('click', function () {
+    if (localStorage.getItem('memo')) {    // 値が保存されていれば 
+      const text = localStorage.getItem('memo');  // データを取得
+      $('.expanding').val(text);   // 取得したデータで上書き }
+    } else {
+      alert('データがありません！！');
+    };
+
+
+
+    //  ↓うまく挙動せず中断したものたち
+    // $('.save-button').on('click', function () {
+    //   const data = {
+    //     // title: $('.input').val(),
+    //     text: $('.text_arera').val(),
+    //   };
+    //   console.log(data);
+    //   const jsonData = JSON.stringify(data);
+    //   localStorage.setItem('memo', jsonData);
+    // });
+
+
+
+
+
+    // //1.Save クリックイベント
+    // $('#save').on('click', function () {
+    //   const data = {
+    //     title: $('#input').val(),
+    //     text: $('#text_arera').val(),
+    //   };
+    //   const jsonData = JSON.stringify(data);
+    //   localStorage.setItem('memo', jsonData);
+    // });
+    // //2.clear クリックイベント
+    // $('#clear').on('click', function () {
+    //   localStorage.removeItem('memo');
+    //   $('#input').val('');
+    //   $('#text_area').val('');
+    // });
+    // //3.ページ読み込み：保存データ取得表示
+    // if (localStorage.getItem('memo')) {
+    //   const jsonData = localStorage.getItem('memo');
+    //   console.log(jsonData);
+    //   const data = JSON.parse(jsonData);
+    //   console.log(data);
+    //   $('#input').val(data.title);
+    //   $('#text_area').val(data.text);
+    // } else {
+    //   alert('データがないです');
+    // }
+  </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+body{
+	/* font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+	line-height: 1.75; */
+	width: 1000px;
+	background: rgb(16, 139, 22);
+	margin-right: auto;
+    margin-left : auto;
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+	flex-direction: column;
+	/* align-content: flex-start; */
+	/* background-attachment: url(/img/sky.png); */
+	/* z-index: 1; */
+	/* position: absolute;  */
+}
+
+/* パディングをサイズ内側にする処理 */
+* {
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+
+/*この下から記述*/
+.header {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	/* font-family: Futura PT Light; */
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-size: 20px;
+	color: rgba(227, 227, 231, 0.808)
+    /* font-stretch: condensed; */
+    /* font-weight: bold; */
+}
+
+.header h1 {
+	letter-spacing: 0.3em;
+	margin-bottom: 24px;
+}
+
+#sticky-note-container {
+  height: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content:flex-start;
+  /* width: 600px; */
+}
+
+.buttons {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note1 {
+  /* height: 231.9px;
+  width: 560px; */
+  width: 50%;
+  height: 118px;
+  padding: 12px;
+  cursor: pointer;
+  border: 1.5px solid  rgba(137, 177, 85, 0.514);
+  border-radius: 20px;  
+  display: flex;
+  justify-items: center;
+  align-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* .note_text {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+}
+
+.note_buttons {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-items: center;
+  align-content: center;
+  flex-direction: column;
+} */
+
+.note1 > input[type="text"] {
+  width: 100%;
+  height: 5rem;
+  font-size: 28px;
+  color: rgba(242, 255, 240, 0.5);
+  background-color: rgba(139, 216, 75, 0.582);
+  border: 0px;
+}
+.note1 > input[type="button"] {
+  color: rgba(240, 248, 255, 0.267);
+  background-color: rgba(45, 211, 108, 0);
+  height: 20px;
+  border: 0px;
+}
+
+textarea {
+  width: 95%;
+  height: 5rem;
+  color: aliceblue;
+  background-color: rgba(100, 177, 104, 0.3);
+}
+
+
+
+/* ボタンアニメーション */
+.btn-animation-02 {
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+	background-color:  rgba(16, 139, 22, 0.192);
+	border: 2px solid  rgba(200, 230, 203, 0.575);
+	font-size: 16px;
+	color:  rgba(200, 230, 203, 0.719);
+	text-decoration: none;
+	font-weight: bold;
+	padding: 10px 24px;
+	border-radius: 4px;
+    position: relative;
+	z-index: 5;
+}
+
+.btn-animation-02 span {
+	position: relative;
+	z-index: 5;
+}
+
+.btn-animation-02::before,
+.btn-animation-02::after {
+	content: "";
+	display: block;
+	background-color:  rgba(5, 83, 9, 0.233);
+	width: 50%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	transition: .2s;
+}
+.btn-animation-02::before {
+    left: 0;
+}
+.btn-animation-02::after {
+    right: 0;
+}
+
+.btn-animation-02:hover:before,
+.btn-animation-02:hover:after {
+	width: 0;
+	background-color:  rgba(5, 83, 9, 0.26);
+}
+
+.btn-animation-02:hover {
+	color:  rgba(208, 245, 209, 0.658);
+}
+
+
+/*浮遊物*/
+.fluid {
+	position: absolute;
+	width:25vh;/*横幅*/
+    height: 20vh;/*縦幅*/
+    background:#acf05441;/*背景色*/
+    opacity: 65%;
+    margin: 15vh -18vh;
+    animation: fluidrotate 25s ease 0s infinite;/*アニメーションの設定*/
+	z-index: 1;
+	left: 200px;
+    top: 240px;
+}
+
+.fluid2 {
+	position: absolute;
+	width:7vh;/*横幅*/
+    height: 6vh;/*縦幅*/
+    background:#76bef856;/*背景色*/
+    opacity: 80%;
+    margin: 15vh 50vh;
+    animation: fluidrotate 20s ease 0s infinite;/*アニメーションの設定*/
+	z-index: 1;
+	left: 250px;
+    top: 150px;
+}
+
+.fluid3 {
+	position: absolute;
+	width:9vh;/*横幅*/
+    height: 9vh;/*縦幅*/
+    background:#069e4049;/*背景色*/
+    opacity: 85%;
+    margin: 15vh 50vh;
+    animation: fluidrotate 20s ease 0s infinite;/*アニメーションの設定*/
+	z-index: 1;
+	left: 100px;
+    top: 550px;
+}
+
+.fluid4 {
+	position: absolute;
+	width:80vh;/*横幅*/
+    height: 80vh;/*縦幅*/
+    background:#085fa523;/*背景色*/
+    opacity: 85%;
+    margin: -30vh -10vh;
+    animation: fluidrotate 30s ease 0s infinite;/*アニメーションの設定*/
+	z-index: 1;
+	left: 600px;
+    top: 800px;
+}
+
+.fluid5 {
+	position: absolute;
+	width:85vh;/*横幅*/
+    height: 85vh;/*縦幅*/
+    background:#0899c518;/*背景色*/
+    opacity: 85%;
+    margin: -25vh -30vh;
+    animation: fluidrotate 25s ease 0s infinite;/*アニメーションの設定*/
+	z-index: 1;
+	left: 0px;
+    top: 0px;
+}
+
+
+@keyframes fluidrotate {  
+	  
+0%, 100% {
+    border-radius: 75% 37% 54% 46%/55% 48% 52% 45%;
+}
+14% {
+    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+}
+28% {
+    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+}
+42% {
+    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+}
+56% {
+    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+}
+70% {
+    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+}
+84% {
+    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+}
+}
+
+@keyframes fluidrotate2 {  
+0%, 100% {
+    border-radius: 85% 37% 54% 91%/60% 48% 60% 87%;
+}
+14% {
+    border-radius: 25% 60% 54% 93%/35% 60% 40% 91%;
+}
+28% {
+    border-radius: 40% 46% 26% 100%/36% 70% 30% 99%;
+}
+42% {
+    border-radius: 75% 39% 40% 97%/55% 38% 78% 100%;
+}
+56% {
+    border-radius: 40% 39% 67% 99%/80% 50% 50% 100%;
+}
+70% {
+    border-radius: 50% 50% 34% 90%/56% 68% 32% 89%;
+}
+84% {
+    border-radius: 46% 54% 50% 95%/35% 61% 39% 97%;
+}
+	  
+}
+
+/*copyrights*/
+.copyrights {
+	/* margin-top: 1300px; */
+	color: rgba(211, 212, 211, 0.911);
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;  
+}
+
+
+
+
+
+
